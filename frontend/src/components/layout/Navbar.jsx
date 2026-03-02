@@ -13,47 +13,49 @@ export default function Header({ title, notificationsPath }) {
     user?.email ||
     "Profile";
 
+  const safeNotificationsPath = notificationsPath || "/notifications";
+
   return (
-    <header className="h-16 bg-white dark:bg-gray-950 border-b flex items-center justify-between px-6 shadow-sm">
+    <header className="sticky top-0 z-30 h-16 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div className="flex h-full items-center justify-between px-4 md:px-6">
+        <div className="flex items-center gap-3">
+          <button
+            className="rounded-lg border border-slate-200 p-2 text-slate-600 transition-colors hover:bg-red-50"
+            aria-label="menu"
+          >
+            <Menu size={18} />
+          </button>
 
-      {/* Left */}
-      <div className="flex items-center gap-4">
-        <button
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-          aria-label="menu"
-        >
-          <Menu size={20} />
-        </button>
+          <div className="flex flex-col leading-tight">
+            <h1 className="text-base font-semibold text-slate-900 md:text-lg">{title}</h1>
+            <span className="hidden text-xs text-slate-500 md:block">
+              Tableau de pilotage manager
+            </span>
+          </div>
+        </div>
 
-        <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          {title}
-        </h1>
-      </div>
+        <div className="flex items-center gap-2 md:gap-3">
+          <Link
+            to={safeNotificationsPath}
+            className="relative rounded-lg border border-slate-200 p-2 text-slate-600 transition-colors hover:bg-red-50"
+            aria-label="notifications"
+          >
+            <Bell size={18} />
+            <span className="absolute -right-1 -top-1 inline-flex min-h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
+              3
+            </span>
+          </Link>
 
-      {/* Right */}
-      <div className="flex items-center gap-4">
-
-        {/* Notifications */}
-        <Link
-          to={notificationsPath}
-          className="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-        >
-          <Bell size={20} />
-
-          {/* Badge */}
-          <span className="absolute -top-1 -right-1 text-xs bg-red-500 text-white px-1.5 py-0.5 rounded-full">
-            3
-          </span>
-        </Link>
-
-        {/* Profile */}
-        <button className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full hover:shadow-md transition">
-          <UserCircle2 size={20} />
-          <span className="text-sm font-medium hidden sm:block">
-            {profileName}
-          </span>
-        </button>
+          <button className="flex items-center gap-2 rounded-full border border-slate-200 bg-orange-50 px-3 py-1.5 transition-colors hover:bg-red-50">
+            <UserCircle2 size={18} className="text-slate-600" />
+            <span className="hidden text-sm font-medium text-slate-700 sm:block">
+              {profileName}
+            </span>
+          </button>
+        </div>
       </div>
     </header>
   );
 }
+
+
