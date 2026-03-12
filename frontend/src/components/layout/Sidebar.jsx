@@ -1,7 +1,6 @@
 import {
   Award,
   BarChart3,
-  Briefcase,
   ClipboardList,
   Gauge,
   LogOut,
@@ -24,14 +23,12 @@ const employeeItems = [
 
 const managerItems = [
   ["Dashboard equipe", "/manager/dashboard", Gauge],
-  ["Vue unifiee equipe", "/manager/tasks", ClipboardList],
-  ["Creer tache", "/manager/tasks/create", PlusCircle],
+  ["Vue unifiee tache", "/manager/tasks", ClipboardList],
+  ["Gestion taches", "/manager/tasks/create", PlusCircle],
   ["Gestion badges", "/manager/badges", Award],
-  ["Utilisateurs", "/manager/users", Users],
-  ["Creer employe", "/manager/users/create", UserRound],
-  ["Configuration JIRA", "/manager/jira", Shield],
+  ["Gestion Utilisateurs", "/manager/users", Users],
+  //["Creer employe", "/manager/users/create", UserRound],
   ["Rapports", "/manager/reports", BarChart3],
-  ["Equipes", "/manager/teams", Briefcase],
 ];
 
 export default function Sidebar({ role }) {
@@ -108,5 +105,4 @@ export default function Sidebar({ role }) {
     </aside>
   );
 }
-
 

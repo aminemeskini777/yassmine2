@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Badge;
+use App\Models\Ticket;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -39,5 +41,15 @@ class User extends Authenticatable
     public function isEmployee()
     {
         return $this->role === 'employee';
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function badges()
+    {
+        return $this->belongsToMany(Badge::class)->withTimestamps();
     }
 }
