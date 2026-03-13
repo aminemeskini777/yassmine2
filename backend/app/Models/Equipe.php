@@ -1,21 +1,24 @@
 <?php
+
 namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Badge extends Model
+class Equipe extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
+        'nom',
     ];
 
+    /**
+     * Relation avec les utilisateurs (many-to-many)
+     */
     public function users()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class, 'equipe_user')
+                    ->withTimestamps();
     }
 }

@@ -18,13 +18,18 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+         // Appeler le EquipeSeeder d'abord
+        $this->call([
+            EquipeSeeder::class,
+        ]);
+
         User::factory()->create([
             'name' => 'Amine Meskini',
             'email' => 'amine.meskini@soprahr.com',
             'password' => Hash::make('password'),
             'role' => 'manager',
             'status' => 'active',
-            
+
 
         ]);
     }

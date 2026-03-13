@@ -1,3 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useEffect, useContext } from "react";
 import api from "../api/axios";
 
@@ -40,6 +43,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await api.post("/auth/logout");
+    // eslint-disable-next-line no-empty
     } catch (e) {}
 
     localStorage.removeItem("token");

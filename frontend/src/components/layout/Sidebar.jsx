@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import {
   Award,
   BarChart3,
+  Briefcase,
   ClipboardList,
   Gauge,
   LogOut,
@@ -16,19 +18,20 @@ import { cn } from "@/lib/utils";
 
 const employeeItems = [
   ["Dashboard", "/dashboard", Gauge],
-  ["Vue unifiee", "/tasks", ClipboardList],
+  ["Vue unifiee taches", "/tasks", ClipboardList],
   ["Mes badges", "/badges", Award],
   ["Mon profil", "/profile", UserRound],
 ];
 
 const managerItems = [
   ["Dashboard equipe", "/manager/dashboard", Gauge],
-  ["Vue unifiee tache", "/manager/tasks", ClipboardList],
-  ["Gestion taches", "/manager/tasks/create", PlusCircle],
-  ["Gestion badges", "/manager/badges", Award],
+  ["Vue unifiee taches", "/manager/tasks", ClipboardList],
+  ["Gestion Taches", "/manager/tasks/create", PlusCircle],
+  ["Gestion Badges", "/manager/badges", Award],
   ["Gestion Utilisateurs", "/manager/users", Users],
-  //["Creer employe", "/manager/users/create", UserRound],
+  ["Configuration JIRA", "/manager/jira", Shield],
   ["Rapports", "/manager/reports", BarChart3],
+  ["Equipes", "/manager/teams", Briefcase],
 ];
 
 export default function Sidebar({ role }) {
@@ -60,6 +63,7 @@ export default function Sidebar({ role }) {
         </div>
 
         <nav className="space-y-1.5">
+         
           {links.map(([label, to, Icon]) => {
             const active = location.pathname === to;
             return (
@@ -105,4 +109,5 @@ export default function Sidebar({ role }) {
     </aside>
   );
 }
+
 

@@ -18,21 +18,27 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
-        'status',
+        'password_tmp',     // Mot de passe temporaire pour activation
+        'role',              // manager / employee
+        'status',            // active / inactive
+        'equipe_id',         // Clé étrangère vers équipe principale
     ];
 
-    protected $hidden = [
+
+      protected $hidden = [
         'password',
+        'password_tmp',
         'remember_token',
     ];
+
 
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
-    
+
+
     public function isManager()
     {
         return $this->role === 'manager';
@@ -43,13 +49,21 @@ class User extends Authenticatable
         return $this->role === 'employee';
     }
 
-    public function tickets()
+   /**
+     * Relation avec l'équipe principale (belongs to)
+     */
+    public function equipe()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->belongsTo(Equipe::class);
     }
 
-    public function badges()
+    /**
+     * Relation avec les équipes (many-to-many)
+     * Un utilisateur peut appartenir à plusieurs équipes
+     */
+    public function equipes()
     {
-        return $this->belongsToMany(Badge::class)->withTimestamps();
+        return $this->belongsToMany(Equipe::class, 'equipe_user')
+                    ->withTimestamps();
     }
 }
